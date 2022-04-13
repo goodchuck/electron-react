@@ -1,9 +1,11 @@
-const { app, BrowserWindow } = require('electron') 
-const path = require('path') 
+const { app, BrowserWindow, ipcMain } = require('electron') 
+const path = require('path');
+const find = require('find-process');
+let win
 function createWindow () { 
-  const win = new BrowserWindow({ 
-    width: 800, 
-    height: 600, 
+  win = new BrowserWindow({ 
+    width: 1200, 
+    height: 900, 
     webPreferences: { 
       nodeIntegration: true,
       contextIsolation : false
@@ -16,4 +18,20 @@ app.whenReady().then(() => {
 }) 
 app.on('window-all-closed', function () { 
   if (process.platform !== 'darwin') app.quit() 
+})
+
+ipcMain.on('toggle-debug', (event, arg) => {
+  win.webContents.toggleDevTools()
+})
+
+app.on('before-quit' , (e) => {
+  find('port',3000)
+    .then(function (list) {
+      if(list[0] != null){
+        process.kill(list[0].pid, 'SIGHUP');
+      }
+    })
+    .catch((e) => {
+      console.log(e.stack || e);
+    })
 })
