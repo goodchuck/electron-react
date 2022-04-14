@@ -2,6 +2,7 @@ const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path');
 const find = require('find-process');
 let win
+
 function createWindow () { 
   win = new BrowserWindow({ 
     width: 1200, 
@@ -11,11 +12,14 @@ function createWindow () {
       contextIsolation : false
     } 
   }) 
-  win.loadURL("http://localhost:3000")
+  win.loadURL("http://localhost:3000");
+  win.webContents.openDevTools();
 } 
+
 app.whenReady().then(() => { 
   createWindow() 
 }) 
+
 app.on('window-all-closed', function () { 
   if (process.platform !== 'darwin') app.quit() 
 })
