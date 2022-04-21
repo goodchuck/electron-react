@@ -1,6 +1,8 @@
 const { app, BrowserWindow, ipcMain } = require('electron') 
 const path = require('path');
 const find = require('find-process');
+const url = require('url');
+const isDev = require('electron-is-dev')
 let win
 
 function createWindow () { 
@@ -12,7 +14,14 @@ function createWindow () {
       contextIsolation : false
     } 
   }) 
-  win.loadURL("http://localhost:3000");
+
+  win.loadURL(
+    isDev
+    ? 'http://localhost:3000'
+    : `file://${path.join(__dirname, '../build/index.html')}`
+  )
+
+  // win.loadURL("http://localhost:3000");
   win.webContents.openDevTools();
 } 
 
