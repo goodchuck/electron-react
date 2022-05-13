@@ -1,6 +1,11 @@
 const { app, BrowserWindow, ipcMain } = require('electron') 
 const path = require('path');
 const find = require('find-process');
+<<<<<<< HEAD
+=======
+const url = require('url');
+const isDev = require('electron-is-dev')
+>>>>>>> 49e177bb5173493e51376204cfb8abff3e9a38c2
 let win
 
 function createWindow () { 
@@ -11,25 +16,16 @@ function createWindow () {
       nodeIntegration: true,
       contextIsolation : false
     } 
-  })
-  // win.loadURL("http://localhost:3000"); 
+  }) 
+
+  win.loadURL(
+    isDev
+    ? 'http://localhost:3000'
+    : `file://${path.join(__dirname, '../build/index.html')}`
+  )
+
+  // win.loadURL("http://localhost:3000");
   win.webContents.openDevTools();
-  // return;
-  if(process.env.mode === 'dev') {
-    console.log("dev")
-    
-  } 
-  else {
-    console.log("not dev")
-    win.loadURL(`
-      file://${path.join(__dirname, '../build/index.html')}
-    `)
-    // win.loadFile(`
-    //   ${path.join(__dirname, '../build/index.html')}
-    // `)
-  }
-  
-  
 } 
 
 app.whenReady().then(() => { 

@@ -1,5 +1,6 @@
 {
   "name": "react-electron",
+  "homepage": "./",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -7,7 +8,7 @@
     "@testing-library/react": "^13.0.1",
     "@testing-library/user-event": "^13.5.0",
     "concurrently": "^7.1.0",
-    "electron": "^18.0.3",
+    "electron-is-dev": "^2.0.0",
     "find-process": "^1.4.7",
     "jquery": "^3.6.0",
     "react": "^18.0.0",
@@ -18,13 +19,21 @@
     "wait-on": "^6.0.1",
     "web-vitals": "^2.1.4"
   },
-  "main": "src/main.js",
+  "main": "public/electron.js",
   "scripts": {
     "start": "concurrently \"react-scripts start\" \"npm run electron\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "electron": "wait-on http://localhost:3000 && electron ."
+    "electron": "wait-on http://localhost:3000 && electron .",
+    "dist": "react-scripts build && npm run build:win64",
+    "build:osx": "electron-builder --mac",
+    "build:linux": "npm run build:linux32 && npm run build:linux64",
+    "build:linux32": "electron-builder --linux --ia32",
+    "build:linux64": "electron-builder --linux --x64",
+    "build:win": "npm run build:win32 && npm run build:win64",
+    "build:win32": "electron-builder --win portable --ia32",
+    "build:win64": "electron-builder --win portable --x64"
   },
   "eslintConfig": {
     "extends": [
@@ -45,6 +54,7 @@
     ]
   },
   "devDependencies": {
+    "electron": "^18.0.3",
     "electron-builder": "^23.0.3"
   }
 }
