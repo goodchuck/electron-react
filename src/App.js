@@ -13,9 +13,9 @@ function App() {
   return (
   <>
       <div className="App">
-        <Link to="/test1">te1</Link>
+        {/* <Link to="/test1">te1</Link>
         <Link to="/test2">te2</Link>
-        <h1>ㅅ3</h1>
+        <h1>ㅅ3</h1> */}
       </div>
       <Test1 />
       <Routes>

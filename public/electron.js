@@ -1,11 +1,8 @@
 const { app, BrowserWindow, ipcMain } = require('electron') 
 const path = require('path');
 const find = require('find-process');
-<<<<<<< HEAD
-=======
 const url = require('url');
 const isDev = require('electron-is-dev')
->>>>>>> 49e177bb5173493e51376204cfb8abff3e9a38c2
 let win
 
 function createWindow () { 
