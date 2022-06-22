@@ -1,13 +1,12 @@
 import { useEffect } from 'react';
 
 import '../App.css';
-import {animate,init} from  '../JS/object.js';
-import * as handle from '../JS/handle.js' ;
+import {Viewer, animate} from  '../JS/object.js';
 const Test1 = () => {
     useEffect(() => {
-        init();
-        animate();
-        handle.init();
+        let ViewerE = new Viewer();
+        ViewerE.init();
+        ViewerE.animate();
     })
     
     return (
