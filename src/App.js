@@ -17,7 +17,7 @@ function App() {
         <Link to="/test2">te2</Link>
         <h1>ㅅ3</h1> */}
       </div>
-      <Test1 />
+      <Test2 />
       <Routes>
       {/* <Route path="/" element={<Splash />} />
       <Route path="/layout" element={<Home />} />

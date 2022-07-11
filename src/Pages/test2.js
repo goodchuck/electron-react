@@ -1,9 +1,16 @@
-
+import { useEffect } from 'react';
+import '../App.css';
+// import {Viewer, animate} from  '../JS/object2.js';
+import * as pn from '../JS/panorama.js';
 const Test2 = () => {
-
+    useEffect(() => {
+        pn.init();
+        pn.animate();
+    })
     return (
         <>
-            <h1>test2!!!</h1>
+            <div id="container"></div>
+            <div id='testCanvas'></div>
         </>
     )
 }
